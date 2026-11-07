@@ -1,0 +1,44 @@
+/* Agenda semanal — Matías Nicolás Echeveste Cardozo */
+:root {
+  color-scheme: light dark;
+  --fondo: #f5f7fb; --superficie: #fff; --texto: #111827; --suave: #4b5563; --borde: #e5e7eb; --acento: #4f46e5;
+  --trabajo: #2563eb; --estudio: #7c3aed; --salud: #059669; --personal: #d97706; --alerta: #b91c1c;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --fondo: #0b0f19; --superficie: #131a2a; --texto: #e5e7eb; --suave: #9ca3af; --borde: #253045; --acento: #818cf8; --alerta: #f87171; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--fondo); color: var(--texto); }
+main { max-width: 1200px; margin: 0 auto; padding: 20px 16px 48px; }
+header { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center; }
+h1 { margin: 0; }
+input, select, button { font: inherit; color: inherit; background: var(--superficie); border: 1px solid var(--borde); border-radius: 8px; padding: 6px 10px; }
+button { cursor: pointer; }
+button[type='submit'] { background: var(--acento); border-color: var(--acento); color: #fff; }
+.disposicion { display: grid; gap: 20px; grid-template-columns: 1fr; margin-top: 16px; }
+@media (min-width: 960px) { .disposicion { grid-template-columns: 1fr 320px; } }
+.navegacion { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.navegacion h2 { font-size: 1rem; margin: 0 8px; flex: 1; text-transform: capitalize; }
+.semana { list-style: none; padding: 0; margin: 12px 0 0; display: grid; gap: 8px; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+.semana > li { background: var(--superficie); border: 1px solid var(--borde); border-radius: 10px; padding: 10px; min-height: 140px; }
+.semana > li.hoy { outline: 2px solid var(--acento); }
+.semana h3 { margin: 0 0 8px; font-size: .9rem; display: flex; justify-content: space-between; }
+.semana h3 span { color: var(--suave); }
+.semana ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; }
+.libre { color: var(--suave); font-size: .85rem; margin: 0; }
+.evento { position: relative; font-size: .85rem; padding: 6px 22px 6px 8px; border-radius: 6px; border-left: 4px solid; background: color-mix(in srgb, currentColor 6%, transparent); }
+.evento.trabajo { border-color: var(--trabajo); } .evento.estudio { border-color: var(--estudio); }
+.evento.salud { border-color: var(--salud); } .evento.personal { border-color: var(--personal); }
+.evento.conflicto { outline: 1px dashed var(--alerta); }
+.marca { display: block; color: var(--alerta); font-size: .75rem; }
+.eliminar { position: absolute; top: 2px; right: 2px; border: 0; padding: 0 6px; background: transparent; }
+.formulario { background: var(--superficie); border: 1px solid var(--borde); border-radius: 10px; padding: 14px; display: grid; gap: 10px; }
+.formulario h2, .resumen h2 { margin: 0; font-size: 1rem; }
+.formulario label { display: grid; gap: 4px; font-size: .9rem; }
+.fila { display: flex; gap: 8px; flex-wrap: wrap; } .fila label { flex: 1; min-width: 90px; }
+.errores { color: var(--alerta); margin: 0; padding-left: 18px; font-size: .9rem; }
+.advertencia { color: var(--alerta); margin: 0; font-size: .9rem; }
+.mensaje { min-height: 1.2em; color: var(--suave); }
+.resumen dl { display: grid; grid-template-columns: 1fr auto; gap: 4px; margin: 8px 0 0; }
+.resumen dt { text-transform: capitalize; color: var(--suave); } .resumen dd { margin: 0; font-variant-numeric: tabular-nums; }

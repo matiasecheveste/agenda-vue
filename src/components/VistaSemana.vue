@@ -1,15 +1,14 @@
 <!-- Agenda semanal — Matías Nicolás Echeveste Cardozo -->
 <script setup lang="ts">
 import { computed } from 'vue'
-import { DIAS, fechaLegible, isoLocal, seSuperponen } from '../lib/fechas'
+import { DIAS, isoLocal, rangoLegible, seSuperponen } from '../lib/fechas'
 import { useAgenda, type Evento } from '../stores/agenda'
 
 const agenda = useAgenda()
 const hoy = isoLocal(new Date())
 
 const rango = computed(() => {
-  const [primero, ultimo] = [agenda.dias[0]!, agenda.dias[6]!]
-  return `${fechaLegible(primero)} al ${fechaLegible(ultimo)}`
+  return rangoLegible(agenda.dias[0]!, agenda.dias[6]!)
 })
 
 function enConflicto(e: Evento, delDia: Evento[]) {

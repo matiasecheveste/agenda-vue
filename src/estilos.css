@@ -19,7 +19,7 @@ button[type='submit'] { background: var(--acento); border-color: var(--acento); 
 .disposicion { display: grid; gap: 20px; grid-template-columns: 1fr; margin-top: 16px; }
 @media (min-width: 960px) { .disposicion { grid-template-columns: 1fr 320px; } }
 .navegacion { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-.navegacion h2 { font-size: 1rem; margin: 0 8px; flex: 1; text-transform: capitalize; }
+.navegacion h2 { font-size: 1rem; margin: 0 8px; flex: 1; }
 .semana { list-style: none; padding: 0; margin: 12px 0 0; display: grid; gap: 8px; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
 .semana > li { background: var(--superficie); border: 1px solid var(--borde); border-radius: 10px; padding: 10px; min-height: 140px; }
 .semana > li.hoy { outline: 2px solid var(--acento); }
@@ -37,8 +37,14 @@ button[type='submit'] { background: var(--acento); border-color: var(--acento); 
 .formulario h2, .resumen h2 { margin: 0; font-size: 1rem; }
 .formulario label { display: grid; gap: 4px; font-size: .9rem; }
 .fila { display: flex; gap: 8px; flex-wrap: wrap; } .fila label { flex: 1; min-width: 90px; }
+.formulario input, .formulario select { width: 100%; min-width: 0; }
 .errores { color: var(--alerta); margin: 0; padding-left: 18px; font-size: .9rem; }
 .advertencia { color: var(--alerta); margin: 0; font-size: .9rem; }
 .mensaje { min-height: 1.2em; color: var(--suave); }
 .resumen dl { display: grid; grid-template-columns: 1fr auto; gap: 4px; margin: 8px 0 0; }
 .resumen dt { text-transform: capitalize; color: var(--suave); } .resumen dd { margin: 0; font-variant-numeric: tabular-nums; }
+@media (max-width: 600px) {
+  .semana { grid-template-columns: 1fr; }
+  .semana > li { min-height: 0; }
+  .semana > li .libre { display: inline; margin-left: 4px; }
+}

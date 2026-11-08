@@ -6,7 +6,7 @@ import { mount } from '@vue/test-utils'
 import { createPinia, setActivePinia } from 'pinia'
 import { beforeEach, describe, expect, it } from 'vitest'
 import App from '../src/App.vue'
-import { lunesDe, semana, seSuperponen } from '../src/lib/fechas'
+import { lunesDe, rangoLegible, semana, seSuperponen } from '../src/lib/fechas'
 import { CLAVE_ALMACEN, useAgenda, validar } from '../src/stores/agenda'
 
 const base = { titulo: 'Reunión', fecha: '2026-03-04', inicio: '09:00', fin: '10:00', categoria: 'trabajo' as const }
@@ -108,5 +108,13 @@ describe('interfaz', () => {
     await app.find('input[name="inicio"]').setValue('09:30')
     await app.find('input[name="fin"]').setValue('10:30')
     expect(app.find('.advertencia').text()).toContain('Reunión (09:00–10:00)')
+  })
+})
+
+describe('rangoLegible', () => {
+  it('nombra la semana sin repetir el mes ni el año', () => {
+    expect(rangoLegible('2026-11-02', '2026-11-08')).toBe('2 al 8 de noviembre de 2026')
+    expect(rangoLegible('2026-11-30', '2026-12-06')).toBe('30 de noviembre al 6 de diciembre de 2026')
+    expect(rangoLegible('2026-12-28', '2027-01-03')).toBe('28 de diciembre de 2026 al 3 de enero de 2027')
   })
 })

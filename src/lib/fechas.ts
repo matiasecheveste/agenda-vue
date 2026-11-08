@@ -44,6 +44,19 @@ export function seSuperponen(a: { inicio: string; fin: string }, b: { inicio: st
   return minutos(a.inicio) < minutos(b.fin) && minutos(b.inicio) < minutos(a.fin)
 }
 
-export function fechaLegible(iso: string): string {
-  return new Intl.DateTimeFormat('es-UY', { weekday: 'long', day: 'numeric', month: 'long' }).format(desdeIso(iso))
+const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'setiembre', 'octubre', 'noviembre', 'diciembre']
+
+/** Rango de una semana en español: «2 al 8 de noviembre de 2026», «30 de noviembre al 6 de diciembre de 2026». */
+export function rangoLegible(desde: string, hasta: string): string {
+  const d = desdeIso(desde)
+  const h = desdeIso(hasta)
+  const mes = (f: Date) => MESES[f.getMonth()]
+  if (d.getFullYear() !== h.getFullYear()) {
+    return `${d.getDate()} de ${mes(d)} de ${d.getFullYear()} al ${h.getDate()} de ${mes(h)} de ${h.getFullYear()}`
+  }
+  if (d.getMonth() !== h.getMonth()) {
+    return `${d.getDate()} de ${mes(d)} al ${h.getDate()} de ${mes(h)} de ${h.getFullYear()}`
+  }
+  return `${d.getDate()} al ${h.getDate()} de ${mes(h)} de ${h.getFullYear()}`
 }
+
